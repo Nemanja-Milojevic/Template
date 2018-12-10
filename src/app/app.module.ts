@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModule } from "./pages/login/login.module";
+import { PagesRoutingModule } from "./pages/pages-routing.module";
+import { PagesModule } from "./pages/pages.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +25,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    LoginModule
   ],
   bootstrap: [AppComponent],
   providers: [

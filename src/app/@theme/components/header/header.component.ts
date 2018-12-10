@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -20,13 +22,22 @@ export class HeaderComponent implements OnInit {
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.nick);
+
+    this.menuService.onItemClick()
+      .pipe(filter(({ tag }) => tag === 'my-context-menu'))
+        .subscribe(() =>
+          this.router.navigate(['login'])
+        )
   }
+
+  
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');

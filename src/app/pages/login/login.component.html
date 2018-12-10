@@ -1,0 +1,42 @@
+<nb-layout>
+  <nb-layout-column>
+    <nb-card>
+        <h1 id="title" class="title" class="text-center">Login</h1>
+        <p class="sub-title" class="text-center">Hello! Log in with your email.</p>
+        
+        <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+
+          <div class="inputs">
+        
+          <div class="form-control-group">
+            <label class="label" for="input-email">Email address:</label>
+            <input nbInput
+                   fullWidth
+                   pattern=".+@.+\..+"
+                   placeholder="Email address"
+                   autofocus>
+                   
+          </div>
+          <br>
+        
+          <div class="form-control-group">
+            <label class="label" for="input-password">Password:</label>
+            <input nbInput
+                   fullWidth
+                   placeholder="Password">
+          </div>
+
+        </div>
+        <div class="text-center">
+        
+          <button class="button" nbButton
+                  status="success"
+                  [disabled]="submitted || !form.valid"
+                  [class.btn-pulse]="submitted">
+            Log In
+          </button>
+        </div>
+        </form>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
